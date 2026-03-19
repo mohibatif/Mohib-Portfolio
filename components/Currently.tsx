@@ -55,7 +55,7 @@ export function Currently() {
                     <li className={styles.item}>
                         <span className={styles.arrow}>►</span>
                         <span className={styles.text}>
-                            Design Lead @ <HoverLink href="https://www.instagram.com/tech.tehwaar/" iconSrc="/globe.svg">Tech Tehwaar</HoverLink>
+                            Design Lead @ <HoverLink href="https://www.instagram.com/tech.tehwaar/" iconSrc="/logos/Tech_Tehwaar_Logo.svg" iconClassName={styles.techTehwaarIcon}>Tech Tehwaar</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>
