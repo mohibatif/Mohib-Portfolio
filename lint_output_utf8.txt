@@ -1,0 +1,117 @@
+﻿
+> portfolio@0.1.0 lint
+> eslint
+
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\app\api\chat\route.ts
+  44:13  error  'sanitizedHistory' is never reassigned. Use 'const' instead  prefer-const
+  82:19  error  Unexpected any. Specify a different type                     @typescript-eslint/no-explicit-any
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\app\page.tsx
+  21:65  warning  'duration' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\AsciiAvatar\AsciiAvatar.tsx
+  10:42  warning  'visemeIntensity' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  56:28  error    Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. The inferred dependencies did not match the manually specified dependencies, which could cause the value to change more or less frequently than expected. The inferred dependency was `getMouth`, but the source dependencies were [eyes, isTalking, frame]. Inferred different dependency than source.
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\AsciiAvatar\AsciiAvatar.tsx:56:28
+  54 |   };
+  55 |
+> 56 |   const robotArt = useMemo(() => {
+     |                            ^^^^^^^
+> 57 |     const mouth = getMouth();
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     return `
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 72 |     `;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 73 |   }, [eyes, isTalking, frame]);
+     | ^^^^ Could not preserve existing manual memoization
+  74 |
+  75 |   return (
+  76 |     <div className={styles.asciiWrapper}>  react-hooks/preserve-manual-memoization
+  73:6   warning  React Hook useMemo has a missing dependency: 'getMouth'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           react-hooks/exhaustive-deps
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Avatar3D\Avatar.tsx
+   49:11  warning  'currentVisemeWeights' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  111:9   error    Error: This value cannot be modified
+
+Modifying a value returned from a hook is not allowed. Consider moving the modification into the hook where the value is constructed.
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Avatar3D\Avatar.tsx:111:9
+  109 |
+  110 |         // Body breathing
+> 111 |         scene.position.y = Math.sin(breathTimer.current * 0.5) * 0.003;
+      |         ^^^^^^^^^^^^^^ `scene` cannot be modified
+  112 |     });
+  113 |
+  114 |     return (  react-hooks/immutability
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Avatar3D\FallbackAvatar.tsx
+  12:45  warning  'currentViseme' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Avatar3D\useLipSync.ts
+  34:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Avatar3D\useLipSync.ts:34:9
+  32 |         if (!visemes.length) return;
+  33 |
+> 34 |         setIsTalking(true);
+     |         ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  35 |
+  36 |         visemes.forEach((evt) => {
+  37 |             const t = setTimeout(() => {  react-hooks/set-state-in-effect
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatInterface\ChatInterface.tsx
+  79:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatOverlay\useChat.ts
+  86:22  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatOverlay\useSpeechInput.ts
+  15:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:61  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatPanel.tsx
+   21:7   warning  'QUICK_PROMPTS' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   90:23  error    Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  110:11  warning  'handleKey' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  114:11  warning  'initials' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ConversationMode.tsx
+  2:10  warning  'useRef' is defined but never used     @typescript-eslint/no-unused-vars
+  2:18  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Hero.tsx
+   2:21  warning  'useRef' is defined but never used                  @typescript-eslint/no-unused-vars
+  18:9   error    'timeout' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ProjectsGrid.tsx
+  4:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\list-models.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\test-api.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\test-history.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+Γ£û 31 problems (18 errors, 13 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

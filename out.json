@@ -1,0 +1,4 @@
+{
+  "error": "Internal server error",
+  "details": "Invalid JSON payload received. Unknown name \"systemInstruction\": Cannot find field."
+}

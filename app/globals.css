@@ -1,26 +1,221 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design tokens ──────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #080808;
+  --bg-2: #0d0d0d;
+  --bg-3: #111111;
+  --text-primary: #B0B0B0;
+  --text-dim: #444444;
+  --text-mid: #777777;
+  --text-label: #383838;
+  --border: #181818;
+  --border-mid: #252525;
+  --border-on: #555555;
+  --accent: #E0E0E0;
+  --mono: 'Departure Mono', 'Space Mono', monospace;
+  --radius: 3px;
+  --transition: 150ms ease;
+  --transition-panel: 300ms ease;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Reset ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-size: 13px;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(255, 255, 255, 0.03) 1px,
+    rgba(255, 255, 255, 0.03) 2px
+  );
+  background-size: 100% 2px;
+  color: var(--text-primary);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 22px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-mid);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-on);
+}
+
+/* ── Selection ──────────────────────────────── */
+::selection {
+  background: rgba(200, 200, 200, 0.15);
+  color: var(--accent);
+}
+
+/* ── Links ──────────────────────────────────── */
+a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ── Buttons ────────────────────────────────── */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: inherit;
+  line-height: 22px;
+}
+
+:focus-visible {
+  outline: 1px solid var(--border-on);
+  outline-offset: 2px;
+}
+
+/* ── Braille spinner keyframes ──────────────── */
+@keyframes braille {
+  0% {
+    content: '⣾';
+  }
+
+  12% {
+    content: '⣽';
+  }
+
+  25% {
+    content: '⣻';
+  }
+
+  37% {
+    content: '⢿';
+  }
+
+  50% {
+    content: '⡿';
+  }
+
+  62% {
+    content: '⣟';
+  }
+
+  75% {
+    content: '⣯';
+  }
+
+  87% {
+    content: '⣷';
+  }
+
+  100% {
+    content: '⣾';
+  }
+}
+
+.spinner::before {
+  content: '⣾';
+  display: inline-block;
+  animation: braille 0.64s steps(1) infinite;
+  color: var(--text-dim);
+}
+
+/* ── Cursor blink ───────────────────────────── */
+@keyframes cursorBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor::after {
+  content: '█';
+  display: inline-block;
+  animation: cursorBlink 1s step-end infinite;
+  color: var(--text-dim);
+  font-size: 0.85em;
+  margin-left: 2px;
+}
+
+/* ── Fade in ────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Slide down ─────────────────────────────── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+    max-height: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 600px;
+  }
+}
+
+/* ── Typing dots ────────────────────────────── */
+@keyframes typingDot {
+
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+
+  40% {
+    opacity: 1;
+  }
 }

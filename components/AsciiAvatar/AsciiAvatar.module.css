@@ -1,0 +1,37 @@
+.asciiWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ascii {
+  font-family: var(--mono);
+  font-size: clamp(10px, 1.2vw, 16px);
+  line-height: 1.1;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(224, 224, 224, 0.1);
+  margin: 0;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.talking {
+  color: var(--accent);
+  text-shadow: 0 0 15px rgba(224, 224, 224, 0.2);
+}
+
+.eye {
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+.mouth {
+  color: var(--accent);
+}
+
+.accent {
+  color: var(--text-dim);
+}

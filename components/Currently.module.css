@@ -1,0 +1,149 @@
+.section {
+    padding: 32px 0 48px;
+    width: 100%;
+}
+
+/* ── Header with ruled line ──────────── */
+.headerRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.heading {
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: #555555;
+}
+
+@keyframes dotTravel {
+    from { background-position: 0 0; }
+    to { background-position: 20px 0; }
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-mid);
+    transform-origin: left;
+}
+
+/* ── Status Pill ─────────────────────── */
+.statusContainer {
+    margin-bottom: 24px;
+    display: flex;
+}
+
+.statusPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background: rgba(34, 197, 94, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4ade80;
+    letter-spacing: 0.02em;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    position: relative;
+}
+
+.statusDot::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    70% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* ── List items ──────────────────────── */
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85); /* Off-white for less eye strain */
+}
+
+.arrow {
+    color: var(--accent);
+    font-size: 16px;
+    margin-top: 2px;
+    user-select: none;
+    opacity: 0.5;
+}
+
+.text {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.highlight {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.boldText {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* ── Thick underline links ───────────── */
+.link {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(224, 224, 224, 0.3);
+    padding-bottom: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.link:hover {
+    border-bottom-color: var(--accent);
+    transform: translateY(-1px);
+    filter: brightness(1.2);
+    text-shadow: 0 0 8px rgba(224, 224, 224, 0.3);
+}
+
+.devsincIcon {
+    transform: scale(0.75);
+}

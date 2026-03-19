@@ -1,0 +1,53 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 40px;
+    margin-bottom: 6px;
+}
+
+.navBtn {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 4px;
+    transition: color var(--transition);
+    flex-shrink: 0;
+}
+
+.navBtn:hover {
+    color: var(--text-primary);
+}
+
+.prompt {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    text-align: left;
+    font-size: 13px;
+    line-height: 22px;
+    white-space: nowrap;
+    transition: color var(--transition);
+}
+
+.glyph {
+    flex-shrink: 0;
+    font-size: 11px;
+}
+
+.inactive {
+    color: #3a3a3a;
+    cursor: default;
+    pointer-events: none;
+}
+
+.active {
+    color: var(--text-dim);
+    cursor: pointer;
+}
+
+.active:hover {
+    color: var(--text-primary);
+}

@@ -1,0 +1,135 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: 0 24px 60px;
+    }
+}
+
+.inner {
+    max-width: 900px;
+}
+
+.label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.1s both;
+}
+
+.name {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    line-height: 1.05;
+    font-family: var(--mono);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.2s both;
+    min-height: 1.1em;
+}
+
+.subtitle {
+    font-size: 1.0625rem;
+    color: var(--text-dim);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 48px;
+    max-width: 520px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.subtitle.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlight {
+    color: var(--text);
+    font-weight: 400;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    flex-wrap: wrap;
+}
+
+.actions.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chatBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--text);
+    color: var(--bg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    letter-spacing: -0.01em;
+}
+
+.chatBtn:hover {
+    background: #ddd;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+}
+
+.chatBtn:active {
+    transform: translateY(0);
+}
+
+.chatDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s ease infinite;
+    flex-shrink: 0;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.socialLink {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    transition: color var(--transition);
+}
+
+.socialLink:hover {
+    color: var(--text);
+}
+
+.sep {
+    color: var(--border-hover);
+    font-size: 0.75rem;
+}

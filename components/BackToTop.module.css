@@ -1,0 +1,54 @@
+.button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px; /* Set to 42px as requested */
+    height: 42px;
+    background: none; /* Removed circle background */
+    backdrop-filter: none; /* Removed blur */
+    border: none; /* Removed border */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.button:hover {
+    transform: translateY(-8px) scale(1.15); /* More prominent scale on hover */
+}
+
+.button:active {
+    transform: translateY(0) scale(0.9);
+}
+
+.icon {
+    width: 100%; /* Fill container */
+    height: 100%;
+    transition: all 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.button:hover .icon {
+    filter: brightness(1.2);
+}
+
+@media (max-width: 768px) {
+    .button {
+        bottom: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+    }
+}

@@ -1,0 +1,349 @@
+.container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(13, 13, 13, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Header Bar ──────────────────────────────── */
+.headerBar {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.headerTitle {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.maximizeIcon {
+  color: #444;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.maximizeIcon:hover {
+  opacity: 1;
+}
+
+/* ── History Scroll Area ──────────────────────── */
+.history {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  max-height: 420px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* Custom Scrollbar */
+.history::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.history::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.interactionBlock {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.msgRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.userMsgRow {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px 16px;
+  margin: 4px 16px; /* Add margin instead of negative offset */
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Full border instead of just top/bottom */
+}
+
+.userMsgRow .msgContent {
+  color: #ffffff;
+  letter-spacing: 0.2px;
+}
+
+.activeGlyph {
+  color: #aaa;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.userPrefix {
+  color: #666;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 22px;
+  flex-shrink: 0;
+}
+
+.aiPrefix {
+  color: #888;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 22px;
+  flex-shrink: 0;
+}
+
+.msgContent {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  word-break: break-word;
+  padding-top: 1px;
+}
+
+/* Quick Prompts inside History */
+.promptsRow {
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.shuffleBtn {
+  background: none;
+  border: none;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.shuffleBtn:hover {
+  color: #aaa;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.shuffleBtn:active {
+  transform: rotate(15deg) scale(0.9);
+}
+
+.promptsContainer {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent prompts from stacking */
+  gap: 6px; /* Reduced gap */
+  width: 100%;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Allow them to shrink to fit */
+  gap: 6px;
+  padding: 5px 8px; /* Reduced padding */
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #888;
+  font-size: 10px; /* Reduced font size to fit more on one line */
+  font-family: var(--mono);
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevent internal wrapping */
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.chip:hover {
+  background: rgba(30, 30, 30, 0.6);
+  color: #bbb;
+  border-color: rgba(255, 255, 255, 0.15);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.chipGlyph {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ── Input Bar ───────────────────────────────── */
+.inputArea {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
+  background: #0d0d0d; /* Darker background to match reference image */
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dragDots {
+  color: #444;
+  font-size: 18px;
+  user-select: none;
+}
+
+.inputField {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  padding: 4px 0;
+}
+
+.inputField::placeholder {
+  color: #444;
+}
+
+.micBtn {
+  color: #666;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.micBtn:hover {
+  opacity: 1;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.micImage {
+  transition: filter 0.2s ease;
+}
+
+.micBtn:hover .micImage {
+  filter: brightness(1.5);
+}
+
+.micRecording {
+  color: #ff3b30 !important;
+  opacity: 1;
+  animation: pulseRecording 1.5s infinite;
+}
+
+@keyframes pulseRecording {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spinner-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.sendBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  color: #666;
+  opacity: 0.6;
+}
+
+.sendBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.sendImage {
+  transition: filter 0.2s ease;
+}
+
+.sendBtn:hover .sendImage {
+  filter: brightness(1.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.suggestionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 32px; /* Align with content */
+  margin-top: -4px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.suggestionBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  color: #666;
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.suggestionBtn:hover {
+  color: #999;
+}
+
+.suggestionGlyph {
+  color: #444;
+  font-size: 14px;
+}

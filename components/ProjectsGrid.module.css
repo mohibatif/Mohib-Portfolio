@@ -1,0 +1,118 @@
+.section {
+    padding: 0 0 64px;
+    width: 100%;
+}
+
+/* ── Header with ruled line ──────────── */
+.headerRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.heading {
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: #555555;
+}
+
+@keyframes dotTravel {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 20px 0;
+    }
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-mid);
+    transform-origin: left;
+}
+
+/* ── Grid ───────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Card ───────────────────────────── */
+.card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    /* Removed the global opacity transition so text stays visible */
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-origin: center;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card:hover .thumbnail {
+    border-color: #ffffff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+/* ── Thumbnail ──────────────────────── */
+.thumbnail {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-mid);
+    margin-bottom: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    transition: border-color 0.3s ease;
+}
+
+.image {
+    object-fit: cover;
+    /* Default dark & desaturated state */
+    filter: brightness(0.8) grayscale(0.2);
+    transition: filter 0.3s ease;
+}
+
+/* Reveal image in full color/brightness on hover */
+.card:hover .image {
+    filter: brightness(1) grayscale(0);
+}
+
+/* ── Info ───────────────────────────── */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.name {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 800;
+    /* Bolder per reference */
+    color: rgba(255, 255, 255, 0.85);
+    /* Soft white for less eye strain */
+}
+
+.desc {
+    font-family: var(--mono);
+    /* Change to monospace like title */
+    font-size: 12px;
+    line-height: 18px;
+    color: #888888;
+}

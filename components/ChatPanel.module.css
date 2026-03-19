@@ -1,0 +1,146 @@
+.panel {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height var(--transition-panel), opacity var(--transition-panel);
+    margin: 0 40px 24px;
+}
+
+.panel.open {
+    max-height: 600px;
+    opacity: 1;
+}
+
+/* ── History ───────────────────────────── */
+.history {
+    max-height: 480px;
+    overflow-y: auto;
+    background: transparent;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 0;
+}
+
+/* ── Interaction Block ─────────────────── */
+.interactionBlock {
+    background: #111111;
+    border: 1px solid #1f1f1f;
+    border-radius: 4px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeIn 0.3s ease both;
+}
+
+.msgRow {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+/* ── Labels ────────────────────────────── */
+.dotLabel, .colonLabel {
+    font-family: var(--mono);
+    font-size: 13px;
+    flex-shrink: 0;
+    min-width: 20px;
+    padding-top: 1px;
+}
+
+.dotLabel {
+    color: #555555;
+}
+
+.colonLabel {
+    color: #888888;
+}
+
+.msgContent {
+    font-size: 13px;
+    line-height: 22px;
+    color: var(--text-primary);
+    word-break: break-word;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+/* ── Typing dots ───────────────────────── */
+.dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--text-dim);
+    border-radius: 50%;
+    animation: typingDot 1.2s ease infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ── Input bar ─────────────────────────── */
+.inputRow {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+    background: var(--bg);
+}
+
+.input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 22px;
+    padding: 10px 0;
+    caret-color: var(--text-dim);
+}
+
+.input::placeholder {
+    color: #2a2a2a;
+}
+
+.sendBtn {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    padding: 4px 0 4px 12px;
+    transition: color var(--transition);
+}
+
+.sendBtn:hover {
+    color: var(--text-primary);
+}
+
+/* ── Quick chips ───────────────────────── */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 0 0;
+}
+
+.chip {
+    font-size: 11px;
+    color: #333333;
+    border: 1px solid #1e1e1e;
+    border-radius: var(--radius);
+    padding: 3px 10px;
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.chip:hover {
+    color: var(--text-dim);
+    border-color: #333333;
+}

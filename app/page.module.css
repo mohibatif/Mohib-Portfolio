@@ -1,0 +1,76 @@
+.layout {
+  min-height: 100vh;
+  /* background: var(--bg); REMOVED to show body scanlines */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Name overlay — inside avatarHero, behind canvas ── */
+.nameOverlay {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  /* Push behind everything */
+  pointer-events: none;
+}
+
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  cursor: default;
+}
+
+.nameTop {
+  margin-bottom: 8px;
+}
+
+/* ── Avatar hero ─────────────────────────────── */
+.avatarHero {
+  width: 100%;
+  height: 500px;
+  /* Reduced from 640px */
+  position: relative;
+  margin-top: 0;
+  z-index: 1;
+  overflow: visible;
+  /* Allow model to extend if needed */
+}
+
+
+/* ── UI content ─────────────────────────────── */
+.ui {
+  width: 100%;
+  margin-top: -20px;
+  /* More aggressive pull up */
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Footer ─────────────────────────────────── */
+.footer {
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: 64px;
+}
+
+/* ── Mobile ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .avatarHero {
+    height: 320px;
+  }
+
+  .nameBlock {
+    padding-top: 32px;
+  }
+}

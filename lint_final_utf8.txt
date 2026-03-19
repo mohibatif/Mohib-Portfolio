@@ -1,0 +1,56 @@
+﻿
+> portfolio@0.1.0 lint
+> eslint
+
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\app\page.tsx
+  21:65  warning  'duration' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\AsciiAvatar\AsciiAvatar.tsx
+  10:42  warning  'visemeIntensity' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Avatar3D\FallbackAvatar.tsx
+  12:45  warning  'currentViseme' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatInterface\ChatInterface.tsx
+  79:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatOverlay\useChat.ts
+  86:22  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatOverlay\useSpeechInput.ts
+  15:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:61  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ChatPanel.tsx
+   21:7   warning  'QUICK_PROMPTS' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   90:23  error    Unexpected any. Specify a different type            @typescript-eslint/no-explicit-any
+  110:11  warning  'handleKey' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  114:11  warning  'initials' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ConversationMode.tsx
+  2:10  warning  'useRef' is defined but never used     @typescript-eslint/no-unused-vars
+  2:18  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\Hero.tsx
+  2:21  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\components\ProjectsGrid.tsx
+  4:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\list-models.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\test-api.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\mohib\Desktop\Projects X\Portfolio\portfolio\test-history.js
+  1:15  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+Γ£û 23 problems (12 errors, 11 warnings)
+
