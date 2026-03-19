@@ -20,10 +20,7 @@ export default function Home() {
           <NameDisplay />
         </div>
 
-        <div
-          className="absolute inset-0 w-full h-full"
-          style={{ zIndex: 10, position: 'absolute', top: '150px', transform: 'scale(1.4)' }}
-        >
+        <div className={styles.splineContainer}>
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"

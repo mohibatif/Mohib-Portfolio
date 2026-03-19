@@ -3,6 +3,12 @@
     width: 100%;
 }
 
+@media (max-width: 480px) {
+    .section {
+        padding-bottom: 40px;
+    }
+}
+
 /* ── Header with ruled line ──────────── */
 .headerRow {
     display: flex;
@@ -39,6 +45,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 24px;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        gap: 24px 16px;
+    }
 }
 
 @media (max-width: 640px) {

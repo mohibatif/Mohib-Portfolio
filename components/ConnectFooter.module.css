@@ -35,6 +35,17 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .links {
+        gap: 12px 8px;
+    }
+
+    .link {
+        font-size: 11px;
+    }
 }
 
 .link {
@@ -74,4 +85,20 @@
     letter-spacing: 0.15em;
     color: #666666;
     text-transform: uppercase;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .headerRow {
+        gap: 8px;
+    }
+
+    .heading {
+        font-size: 12px;
+    }
+
+    .footer {
+        padding: 32px 0 48px;
+        gap: 24px;
+    }
 }

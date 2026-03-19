@@ -1,6 +1,6 @@
 // Personal knowledge base — fill this in with YOUR info
 export const ME = {
-    name: "Mohibullah Atif",
+    name: "Mohib Atif",
     role: "Designer & Builder",
     tagline: "I build things that matter.",
     age: 21,

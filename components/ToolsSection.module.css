@@ -2,6 +2,12 @@
     margin-bottom: 120px;
 }
 
+@media (max-width: 768px) {
+    .section {
+        margin-bottom: 80px;
+    }
+}
+
 .headerRow {
     display: flex;
     align-items: center;
@@ -22,6 +28,17 @@
     background: var(--border);
     flex-grow: 1;
     transform-origin: left;
+}
+
+@media (max-width: 480px) {
+    .headerRow {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .heading {
+        font-size: 0.9rem;
+    }
 }
 
 .grid {
@@ -73,6 +90,13 @@
     font-weight: 500;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     line-height: 1; /* Keep text vertically centered properly */
+}
+
+@media (max-width: 480px) {
+    .tool {
+        font-size: 0.95rem;
+        padding: 6px 12px;
+    }
 }
 
 .tool:hover {

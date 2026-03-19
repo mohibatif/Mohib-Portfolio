@@ -35,31 +35,31 @@ export function Currently() {
 
                 <ul className={styles.list}>
                     <li className={styles.item}>
-                        <span className={styles.arrow}>►</span>
+                        <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
                             BS Artificial Intelligence @ <HoverLink href="https://www.umt.edu.pk/" iconSrc="/logos/umt.svg">UMT</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>
-                        <span className={styles.arrow}>►</span>
+                        <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
                             Campus Lead @ <HoverLink href="https://gdg.community.dev/gdg-on-campus-university-of-management-and-technology-lahore-pakistan/" iconSrc="/logos/gdg.svg">Google Developer Group</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>
-                        <span className={styles.arrow}>►</span>
+                        <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
                             President @ <HoverLink href="https://surgeumt.com/" iconSrc="/logos/surge.png">Surge UMT</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>
-                        <span className={styles.arrow}>►</span>
+                        <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
                             Design Lead @ <HoverLink href="https://www.instagram.com/tech.tehwaar/" iconSrc="/logos/Tech_Tehwaar_Logo.svg" iconClassName={styles.techTehwaarIcon}>Tech Tehwaar</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>
-                        <span className={styles.arrow}>►</span>
+                        <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
                             Ambassador @ <HoverLink href="#" iconSrc="/logos/devsinc.svg" iconClassName={styles.devsincIcon}>Devsinc</HoverLink>
                         </span>

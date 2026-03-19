@@ -3,6 +3,12 @@
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    .section {
+        padding: 24px 0 32px;
+    }
+}
+
 /* ── Header with ruled line ──────────── */
 .headerRow {
     display: flex;
@@ -142,6 +148,51 @@
     transform: translateY(-1px);
     filter: brightness(1.2);
     text-shadow: 0 0 8px rgba(224, 224, 224, 0.3);
+}
+
+@media (max-width: 480px) {
+    .headerRow {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .heading {
+        font-size: 12px;
+    }
+
+    .statusPill {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+
+    .item {
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .text, .boldText {
+        font-size: 11px;
+        line-height: 1.2;
+        letter-spacing: -0.2px;
+        white-space: nowrap !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        gap: 4px;
+    }
+    
+    .item {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        font-size: 11px;
+        gap: 4px;
+        align-items: center;
+        overflow: visible;
+    }
+    
+    .arrow {
+        flex-shrink: 0;
+    }
 }
 
 .devsincIcon {

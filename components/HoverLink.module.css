@@ -11,6 +11,12 @@
   gap: 8px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    gap: 4px;
+  }
+}
+
 .hoveredContainer {
   background-color: #212121;
   padding: 4px 12px;
@@ -30,6 +36,13 @@
   height: 24px;
 }
 
+@media (max-width: 768px) {
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .text {
   font-size: 14px; /* Matches visual height of 16px standard font better */
   color: var(--accent);
@@ -39,6 +52,20 @@
   padding-top: 1px;
   border-bottom: 2px solid var(--accent);
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (max-width: 768px) {
+  .text {
+    font-size: 8px; /* Slightly larger than 5px to be readable but still tight */
+    letter-spacing: -0.2px;
+    white-space: nowrap !important;
+    line-height: 1;
+  }
+  
+  .container {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
 }
 
 .hoveredContainer .text {

@@ -53,7 +53,7 @@ export function ConnectFooter() {
                     </a>
                 </div>
 
-                <p className={styles.tagline}>DESIGNED & BUILT BY {ME.name.toUpperCase()}</p>
+                <p className={styles.tagline}>DESIGNED & BUILT BY {ME.name}</p>
             </footer>
         </SectionReveal>
     );
