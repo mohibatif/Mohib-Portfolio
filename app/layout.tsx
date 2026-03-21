@@ -22,6 +22,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={spaceMono.variable}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/DepartureMono-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <LoadingSplash />
         {children}
