@@ -20,7 +20,7 @@
   --border-mid: #252525;
   --border-on: #555555;
   --accent: #E0E0E0;
-  --mono: "Departure Mono", "Space Mono", monospace;
+  --mono: "Departure Mono", var(--font-space-mono), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   --radius: 3px;
   --transition: 150ms ease;
   --transition-panel: 300ms ease;

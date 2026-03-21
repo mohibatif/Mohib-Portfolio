@@ -51,9 +51,9 @@ function ProjectCard({ update }: { update: any }) {
     // Handle haptic vibration on mobile when entering focus
     useEffect(() => {
         if (isInView && typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
-            // Short, subtle haptic "click"
+            // Stronger haptic "click"
             try {
-                window.navigator.vibrate(10);
+                window.navigator.vibrate(40);
             } catch (err) {}
         }
     }, [isInView]);
