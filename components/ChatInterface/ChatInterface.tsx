@@ -54,6 +54,17 @@ const playClickSound = () => {
   } catch (err) {}
 };
 
+// ── Social link map (platform name → profile URL) ────────────
+const SOCIAL_LINKS: Record<string, string> = {
+  linkedin:  "https://www.linkedin.com/in/iamohib/",
+  github:    "https://github.com/mohibatif",
+  email:     "mailto:mohibatif9@gmail.com",
+  instagram: "https://www.instagram.com/mohibatif/",
+};
+
+// Platforms whose name should become a clickable link
+const SOCIAL_PATTERN = /\b(LinkedIn|GitHub|Github|Instagram|Twitter|Email)\b(?:\s*\([^)]*\))?|(https?:\/\/[^\s)]+)/gi;
+
 export function ChatInterface({
   ownerName
 }: ChatInterfaceProps) {
@@ -62,9 +73,10 @@ export function ChatInterface({
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [typingIds, setTypingIds] = useState<Set<string>>(new Set());
+  const [mobilePromptIndex, setMobilePromptIndex] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
-  const [headerTitle, setHeaderTitle] = useState("CHAT WITH MOHIB'S CLONE");
+  const [headerTitle, setHeaderTitle] = useState("CHAT WITH MOHIB'S AI");
   
   const historyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -97,9 +109,18 @@ export function ChatInterface({
     handleShuffle();
   }, []);
 
+  // Repeat cryptic animation every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentTarget = messages.length > 0 ? "CHIT-CHAT TERMINAL" : "CHAT WITH MOHIB'S AI";
+      animateTitle(currentTarget);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [messages.length, animateTitle]);
+
   // Trigger title change on first message
   useEffect(() => {
-    if (messages.length > 0 && headerTitle === "CHAT WITH MOHIB'S CLONE") {
+    if (messages.length > 0 && headerTitle === "CHAT WITH MOHIB'S AI") {
       animateTitle("CHIT-CHAT TERMINAL");
     }
   }, [messages.length, headerTitle, animateTitle]);
@@ -388,7 +409,12 @@ export function ChatInterface({
     <div className={styles.container}>
       {/* Header Bar */}
       <div className={styles.headerBar}>
-        <span className={styles.headerTitle}>{headerTitle}</span>
+        <span 
+          className={styles.headerTitle}
+          onMouseEnter={() => animateTitle(messages.length > 0 ? "CHIT-CHAT TERMINAL" : "CHAT WITH MOHIB'S AI")}
+        >
+          {headerTitle}
+        </span>
 
       </div>
 
@@ -411,10 +437,12 @@ export function ChatInterface({
                 </span>
                 <span className={styles.msgContent}>
                   {pair.ai.loading ? null : (
-                    <TypewriterText 
-                      text={pair.ai.content} 
-                      onComplete={() => handleTypewriterComplete(pair.ai?.id)} 
-                    />
+                    typingIds.has(pair.ai.id)
+                      ? <TypewriterText 
+                          text={pair.ai.content} 
+                          onComplete={() => handleTypewriterComplete(pair.ai?.id)} 
+                        />
+                      : <FormattedMessage text={pair.ai.content} />
                   )}
                 </span>
               </div>
@@ -439,29 +467,43 @@ export function ChatInterface({
 
         {/* Quick Prompts inside history - Hide after first message */}
         {messages.length === 0 && (
-          <div className={styles.promptsRow}>
-            <button className={styles.shuffleBtn} onClick={handleShuffle} aria-label="Shuffle prompts">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                {/* Custom Pixel Shuffle Icon */}
-                <path d="M7 5H17V7H19V11H17V9H9V12H7V5Z" />
-                <path d="M17 19H7V17H5V13H7V15H15V12H17V19Z" />
-                <path d="M18 10H20V12H18V10Z" />
-                <path d="M4 12H6V14H4V12Z" />
-              </svg>
-            </button>
-            <div className={styles.promptsContainer}>
-              {activePrompts.map((prompt) => (
-                <button
-                  key={prompt}
-                  className={styles.chip}
-                  onClick={() => sendMessage(prompt)}
-                >
-                  <span className={styles.chipGlyph}>↳</span>
-                  {prompt}
-                </button>
-              ))}
+          <>
+            <div className={`${styles.promptsRow} ${styles.desktopPrompts}`}>
+              <button className={styles.shuffleBtn} onClick={handleShuffle} aria-label="Shuffle prompts">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  {/* Custom Pixel Shuffle Icon */}
+                  <path d="M7 5H17V7H19V11H17V9H9V12H7V5Z" />
+                  <path d="M17 19H7V17H5V13H7V15H15V12H17V19Z" />
+                  <path d="M18 10H20V12H18V10Z" />
+                  <path d="M4 12H6V14H4V12Z" />
+                </svg>
+              </button>
+              <div className={styles.promptsContainer}>
+                {activePrompts.map((prompt) => (
+                  <button
+                    key={prompt}
+                    className={styles.chip}
+                    onClick={() => sendMessage(prompt)}
+                  >
+                    <span className={styles.chipGlyph}>↳</span>
+                    {prompt}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+
+            <div className={`${styles.promptsRow} ${styles.mobilePrompts}`}>
+              <button className={styles.navBtn} onClick={() => { playClickSound(); setMobilePromptIndex(i => (i - 1 + ALL_QUICK_PROMPTS.length) % ALL_QUICK_PROMPTS.length); }} aria-label="Previous prompt">‹</button>
+              <button
+                className={`${styles.chip} ${styles.mobileChip}`}
+                onClick={() => sendMessage(ALL_QUICK_PROMPTS[mobilePromptIndex])}
+              >
+                <span className={styles.chipGlyph}>↳</span>
+                <span className={styles.mobileChipText}>{ALL_QUICK_PROMPTS[mobilePromptIndex]}</span>
+              </button>
+              <button className={styles.navBtn} onClick={() => { playClickSound(); setMobilePromptIndex(i => (i + 1) % ALL_QUICK_PROMPTS.length); }} aria-label="Next prompt">›</button>
+            </div>
+          </>
         )}
       </div>
 
@@ -567,4 +609,64 @@ function TypewriterText({ text, onComplete }: { text: string; onComplete?: () =>
   }, [text]);
 
   return <>{displayedText}</>;
+}
+
+// ── Formatted message renderer ─────────────────────────────
+function FormattedMessage({ text }: { text: string }) {
+  const nodes: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  // Combined regex: markdown bold | social platform name + optional (url) | bare URL
+  const regex = /\*\*([^*]+)\*\*|\b(LinkedIn|GitHub|Github|Instagram|Twitter|Email)\b(?:\s*\([^)]*\))?|(https?:\/\/[^\s)]+)/gi;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [full, bold, platform, rawUrl] = match;
+    const offset = match.index;
+
+    // Push preceding plain text
+    if (offset > lastIndex) {
+      nodes.push(text.slice(lastIndex, offset));
+    }
+
+    if (bold) {
+      // **bold text** → <strong>
+      nodes.push(<strong key={offset}>{bold}</strong>);
+    } else if (platform) {
+      // Social platform name → bold clickable link, strip raw URL from parens
+      const key = platform.toLowerCase();
+      const href = SOCIAL_LINKS[key === "github" ? "github" : key];
+      nodes.push(
+        <a
+          key={offset}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontWeight: "bold", color: "#d0d0d0", textDecoration: "underline", cursor: "pointer" }}
+        >
+          {platform}
+        </a>
+      );
+    } else if (rawUrl) {
+      // Bare URL → clickable link
+      nodes.push(
+        <a
+          key={offset}
+          href={rawUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#888", textDecoration: "underline", wordBreak: "break-all" }}
+        >
+          {rawUrl}
+        </a>
+      );
+    }
+
+    lastIndex = offset + full.length;
+  }
+
+  // Remaining text
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+
+  return <>{nodes}</>;
 }

@@ -24,8 +24,8 @@
 
 @media (max-width: 768px) {
   .nameOverlay {
-    top: 24px;
-    transform: translateX(-50%) scale(0.8);
+    top: 40px;
+    transform: translateX(-50%);
   }
 }
 
@@ -38,7 +38,7 @@
 }
 
 .nameTop {
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 /* ── Avatar hero ─────────────────────────────── */
@@ -59,7 +59,6 @@
   z-index: 10;
   top: 120px; /* Shift up slightly */
   transform: scale(1.4);
-  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -86,7 +85,7 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 0;
 }
 
 /* ── Footer ─────────────────────────────────── */
@@ -103,11 +102,11 @@
   }
 
   .avatarHero {
-    height: 400px;
+    height: 250px;
   }
 
   .ui {
     margin-top: 0;
-    gap: 24px;
+    gap: 0;
   }
 }

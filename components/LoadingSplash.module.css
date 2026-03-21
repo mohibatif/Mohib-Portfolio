@@ -1,0 +1,37 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 500ms ease;
+  pointer-events: all;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
+  align-items: baseline;
+  font-family: "Departure Mono", "Space Mono", monospace;
+  font-size: 13px;
+  color: #444;
+  letter-spacing: 0.1em;
+}
+
+.label {
+  color: #444;
+}
+
+/* Fixed width so the text doesn't shift as dots cycle */
+.dots {
+  display: inline-block;
+  width: 1.8em;
+  color: #555;
+}

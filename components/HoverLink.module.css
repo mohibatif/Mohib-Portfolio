@@ -1,73 +1,48 @@
-.container {
+.link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
   vertical-align: middle;
-  text-decoration: none;
+
+  /* Typography */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
   cursor: pointer;
-  padding: 4px 0px; 
-  border-radius: 8px;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  gap: 8px;
+
+  /* Shape */
+  border-radius: 4px;
+  padding: 1px 4px;
+  margin: 0 -4px;
+
+  /* Transitions */
+  transition: background-color 150ms ease-out, transform 150ms ease-out, text-decoration-color 150ms ease-out;
 }
 
-@media (max-width: 768px) {
-  .container {
-    gap: 4px;
-  }
-}
-
-.hoveredContainer {
-  background-color: #212121;
-  padding: 4px 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+.link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: scale(1.03);
+  text-decoration-color: rgba(255, 255, 255, 0.6);
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
+  flex-shrink: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
-.hoveredContainer .icon {
-  width: 24px;
-  height: 24px;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
-}
-
-.text {
-  font-size: 14px; /* Matches visual height of 16px standard font better */
-  color: var(--accent);
-  white-space: nowrap;
-  letter-spacing: -0.5px;
-  line-height: 1;
-  padding-top: 1px;
-  border-bottom: 2px solid var(--accent);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@media (max-width: 768px) {
-  .text {
-    font-size: 8px; /* Slightly larger than 5px to be readable but still tight */
-    letter-spacing: -0.2px;
-    white-space: nowrap !important;
-    line-height: 1;
-  }
-  
-  .container {
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-  }
-}
-
-.hoveredContainer .text {
-  font-size: 16px; 
 }

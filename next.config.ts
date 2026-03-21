@@ -12,11 +12,10 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(self), geolocation=(), interest-cohort=()",
   },
-  // Force HTTPS for 1 year (only effective behind HTTPS)
-  {
-    key: "Strict-Transport-Security",
-    value: "max-age=63072000; includeSubDomains; preload",
-  },
+  // {
+  //   key: "Strict-Transport-Security",
+  //   value: "max-age=63072000; includeSubDomains; preload",
+  // },
   // Content Security Policy
   {
     key: "Content-Security-Policy",

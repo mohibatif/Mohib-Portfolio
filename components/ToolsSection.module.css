@@ -1,10 +1,10 @@
 .section {
-    margin-bottom: 120px;
+    padding: 64px 0 0;
 }
 
 @media (max-width: 768px) {
     .section {
-        margin-bottom: 80px;
+        padding: 48px 0 0;
     }
 }
 
@@ -17,14 +17,14 @@
 
 .heading {
     font-family: var(--mono);
-    font-size: 1.1rem; /* Matched size with the tool pills */
-    letter-spacing: 0.2em;
-    color: #555555;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: #888888;
     text-transform: uppercase;
 }
 
 .line {
-    height: 1px;
+    height: 3px;
     background: var(--border);
     flex-grow: 1;
     transform-origin: left;
@@ -37,7 +37,7 @@
     }
 
     .heading {
-        font-size: 0.9rem;
+        font-size: 11px;
     }
 }
 

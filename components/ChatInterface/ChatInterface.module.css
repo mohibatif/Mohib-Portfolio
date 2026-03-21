@@ -14,10 +14,18 @@
 
 @media (max-width: 480px) {
   .container {
-    margin-bottom: 16px;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+    width: 100%;
+    margin: 0 0 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .headerBar {
+    padding: 8px 12px;
+  }
+
+  .headerTitle {
+    font-size: 10px;
   }
 }
 
@@ -106,7 +114,7 @@
   }
   
   .history {
-    max-height: 350px;
+    max-height: 280px;
   }
 
   .interactionBlock {
@@ -115,7 +123,17 @@
   }
 
   .msgRow {
-    gap: 10px;
+    gap: 8px;
+  }
+
+  .msgContent {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .userPrefix, .aiPrefix {
+    font-size: 13px;
+    line-height: 20px;
   }
 }
 
@@ -199,6 +217,14 @@
   display: none;
 }
 
+.desktopPrompts {
+  display: flex;
+}
+
+.mobilePrompts {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .promptsRow {
     padding: 12px;
@@ -206,8 +232,22 @@
   }
 
   .chip {
-    padding: 4px 6px;
-    font-size: 9px;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .desktopPrompts {
+    display: none;
+  }
+
+  .mobilePrompts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px 4px; /* Reduced further from 8px */
+    gap: 6px; /* Reduced from 8px */
   }
 }
 
@@ -228,6 +268,35 @@
   white-space: nowrap; /* Prevent internal wrapping */
   cursor: pointer;
   line-height: 1.2;
+}
+
+.mobileChip {
+  flex: 1;
+  min-width: 0; /* Important: allow shrinking */
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mobileChipText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.navBtn {
+  color: #555;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 4px 4px; /* Reduced padding from 8px */
+  flex-shrink: 0;
+}
+
+.navBtn:hover {
+  color: #bbb;
 }
 
 .chip:hover {
@@ -256,13 +325,17 @@
   gap: 16px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .inputArea {
-    padding: 10px 12px;
+    padding: 8px 12px;
   }
 
   .inputRow {
-    gap: 12px;
+    gap: 8px;
+  }
+
+  .inputField {
+    font-size: 13px;
   }
 
   .dragDots {

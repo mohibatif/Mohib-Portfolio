@@ -1,11 +1,11 @@
 .section {
-    padding: 32px 0 48px;
+    padding: 64px 0 0;
     width: 100%;
 }
 
 @media (max-width: 768px) {
     .section {
-        padding: 24px 0 32px;
+        padding: 48px 0 0;
     }
 }
 
@@ -18,9 +18,10 @@
 }
 
 .heading {
-    font-size: 14px;
-    letter-spacing: 0.15em;
-    color: #555555;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: #888888;
+    text-transform: uppercase;
 }
 
 @keyframes dotTravel {
@@ -30,7 +31,7 @@
 
 .line {
     flex: 1;
-    height: 1px;
+    height: 3px;
     background: var(--border-mid);
     transform-origin: left;
 }
@@ -116,19 +117,24 @@
 }
 
 .text {
-    color: var(--accent);
-    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
     font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 1.6;
 }
 
 .highlight {
     color: var(--accent);
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .boldText {
-    color: var(--accent);
-    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
     font-size: 16px;
 }
 
@@ -171,13 +177,11 @@
     }
 
     .text, .boldText {
-        font-size: 11px;
-        line-height: 1.2;
-        letter-spacing: -0.2px;
-        white-space: nowrap !important;
-        display: flex !important;
-        flex-wrap: nowrap !important;
+        font-size: 13px;
+        line-height: 1.4;
+        display: inline-flex;
         align-items: center;
+        flex-wrap: nowrap;
         gap: 4px;
     }
     

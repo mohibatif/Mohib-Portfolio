@@ -10,16 +10,41 @@ import { SplineScene } from "@/components/ui/splite";
 import styles from "./page.module.css";
 
 export default function Home() {
-
   return (
     <div className={styles.layout}>
-      {/* ── Avatar hero with name behind ─────────────── */}
+      {/* Mobile view (< 768px): No avatar */}
+      <div className="md:hidden">
+        <MobileView />
+      </div>
+
+      {/* Desktop view (>= 768px): With avatar */}
+      <div className="hidden md:block">
+        <DesktopView />
+      </div>
+    </div>
+  );
+}
+
+function MobileView() {
+  return (
+    <>
       <div className={styles.avatarHero}>
-        {/* Name sits behind the 3D canvas */}
+        <div className={styles.nameOverlay}>
+          <NameDisplay isMobile={true} />
+        </div>
+      </div>
+      <MainUI />
+    </>
+  );
+}
+
+function DesktopView() {
+  return (
+    <>
+      <div className={styles.avatarHero}>
         <div className={styles.nameOverlay}>
           <NameDisplay />
         </div>
-
         <div className={styles.splineContainer}>
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
@@ -27,33 +52,34 @@ export default function Home() {
           />
         </div>
       </div>
+      <MainUI />
+    </>
+  );
+}
 
-
-      {/* ── Interactive UI below avatar ───────────── */}
+function MainUI() {
+  return (
+    <>
       <div className={styles.ui}>
-        <ChatInterface
-          ownerName="Mohib Atif"
-        />
-
+        <ChatInterface ownerName="Mohib Atif" />
         <Currently />
         <ToolsSection />
         <ProjectsGrid />
       </div>
 
-      {/* ── Footer ─────────────────────────────────── */}
       <div className={styles.footer}>
         <ConnectFooter />
       </div>
 
       <BackToTop />
-    </div>
+    </>
   );
 }
 
 import { LEDText } from "@/components/LEDText";
 
 // ── LED style name display ─────────────────
-function NameDisplay() {
+function NameDisplay({ isMobile = false }: { isMobile?: boolean }) {
   return (
     <div className={styles.nameContainer}>
       {/* 
@@ -62,10 +88,10 @@ function NameDisplay() {
       */}
       <LEDText
         text="MOHIB"
-        dotSize={7}
-        gap={3}
-        stroke={2}
-        vStroke={2}
+        dotSize={isMobile ? 8 : 7}
+        gap={isMobile ? 2 : 3}
+        stroke={isMobile ? 1 : 2}
+        vStroke={isMobile ? 1 : 2}
         color="rgba(200, 200, 200, 0.05)"
         glowColor="#D0D0D0"
         className={styles.nameTop}
@@ -73,10 +99,10 @@ function NameDisplay() {
 
       <LEDText
         text="ATIF"
-        dotSize={7}
-        gap={3}
-        stroke={2}
-        vStroke={2}
+        dotSize={isMobile ? 8 : 7}
+        gap={isMobile ? 2 : 3}
+        stroke={isMobile ? 1 : 2}
+        vStroke={isMobile ? 1 : 2}
         color="rgba(200, 200, 200, 0.05)"
         glowColor="#D0D0D0"
         className={styles.nameBottom}
