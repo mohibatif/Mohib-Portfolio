@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import { LoadingSplash } from "@/components/LoadingSplash";
 
@@ -8,12 +7,6 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-space-mono",
-});
-
-const departureMono = localFont({
-  src: "./fonts/departure-mono.woff2",
-  variable: "--font-departure",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -28,8 +21,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceMono.variable} ${departureMono.variable}`}>
-      <body>
+    <html lang="en" className={spaceMono.variable}>
+      <body className="antialiased">
         <LoadingSplash />
         {children}
       </body>
