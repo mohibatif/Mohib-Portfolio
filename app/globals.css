@@ -2,14 +2,11 @@
 
 @font-face {
   font-family: "Departure Mono";
-  src: url("/fonts/departure-mono.woff2") format("woff2");
+  src: url("/fonts/departure-mono.woff2") format("woff2"),
+       url("/fonts/departure-mono.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-
-@theme {
-  --font-departure: "Departure Mono", var(--font-space-mono), monospace;
 }
 
 :root {
@@ -24,6 +21,7 @@
   --border-mid: #252525;
   --border-on: #555555;
   --accent: #E0E0E0;
+  --font-departure: "Departure Mono", var(--font-space-mono), monospace;
   --mono: var(--font-departure);
   --radius: 3px;
   --transition: 150ms ease;
@@ -54,7 +52,7 @@ body {
   );
   background-size: 100% 2px;
   color: var(--text-primary);
-  font-family: var(--font-departure);
+  font-family: "Departure Mono", monospace;
   font-size: 13px;
   line-height: 22px;
   -webkit-font-smoothing: antialiased;
