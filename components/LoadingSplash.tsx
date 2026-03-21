@@ -7,31 +7,60 @@ const DOT_FRAMES = [".", "..", "..."];
 export function LoadingSplash() {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const [dotFrame, setDotFrame] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [typewriterText, setTypewriterText] = useState("");
+  const [showTap, setShowTap] = useState(false);
 
-  // Cycle dots
+  const fullText = 'cout << "Hello World!";';
+
+  // Typewriter effect
   useEffect(() => {
-    const id = setInterval(() => setDotFrame(f => (f + 1) % DOT_FRAMES.length), 380);
-    return () => clearInterval(id);
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypewriterText(fullText.slice(0, i + 1));
+      i++;
+      if (i >= fullText.length) {
+        clearInterval(interval);
+        setTimeout(() => setShowTap(true), 400);
+        setIsLoaded(true);
+      }
+    }, 60);
+    return () => clearInterval(interval);
   }, []);
 
-  // Fade out then unmount
-  useEffect(() => {
-    const fadeTimer = setTimeout(() => setFadeOut(true), 1400);
-    const removeTimer = setTimeout(() => setVisible(false), 1900);
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-    };
-  }, []);
+  const handleEnter = () => {
+    if (!showTap) return;
+    
+    // Prime the Haptic API
+    if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
+      try {
+        window.navigator.vibrate(15);
+      } catch (err) {}
+    }
+
+    setFadeOut(true);
+    setTimeout(() => setVisible(false), 600);
+  };
 
   if (!visible) return null;
 
   return (
-    <div className={`${styles.overlay} ${fadeOut ? styles.fadeOut : ""}`}>
+    <div 
+      className={`${styles.overlay} ${fadeOut ? styles.fadeOut : ""} ${showTap ? styles.interactive : ""}`}
+      onClick={handleEnter}
+    >
       <div className={styles.content}>
-        <span className={styles.label}>Loading</span>
-        <span className={styles.dots} aria-hidden="true">{DOT_FRAMES[dotFrame]}</span>
+        <div className={styles.codeLine}>
+          <span className={styles.typewriter}>{typewriterText}</span>
+          {!showTap && <span className={styles.consoleCursor}>|</span>}
+        </div>
+        
+        {showTap && (
+          <div className={`${styles.codeLine} ${styles.promptLine}`}>
+            <span className={styles.label}>cin &gt;&gt;&nbsp;</span>
+            <span className={styles.tapText}>Tap Here;</span>
+          </div>
+        )}
       </div>
     </div>
   );

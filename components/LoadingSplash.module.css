@@ -7,8 +7,12 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 500ms ease;
+  transition: opacity 600ms ease;
   pointer-events: all;
+}
+
+.interactive {
+  cursor: pointer;
 }
 
 .fadeOut {
@@ -18,18 +22,55 @@
 
 .content {
   display: flex;
-  align-items: baseline;
-  font-family: "Departure Mono", "Space Mono", monospace;
-  font-size: 13px;
+  flex-direction: column;
+  align-items: center; /* Centered */
+  font-family: var(--mono);
+  font-size: 14px;
   color: #444;
   letter-spacing: 0.1em;
+  gap: 12px;
+}
+
+.codeLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promptLine {
+  padding-left: 0; /* Remove indentation for proper centering */
+}
+
+.typewriter {
+  color: #666;
+}
+
+.consoleCursor {
+  color: #444;
+  margin-left: 2px;
+  animation: cursorBlink 1s step-start infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.tapText {
+  color: #888;
+  letter-spacing: 0.1em;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 .label {
-  color: #444;
+  color: #666;
 }
 
-/* Fixed width so the text doesn't shift as dots cycle */
 .dots {
   display: inline-block;
   width: 1.8em;
