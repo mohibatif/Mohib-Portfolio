@@ -21,7 +21,7 @@
   --border-mid: #252525;
   --border-on: #555555;
   --accent: #E0E0E0;
-  --font-departure: "Departure Mono", var(--font-space-mono), monospace;
+  --font-departure: "Departure Mono", monospace;
   --mono: var(--font-departure);
   --radius: 3px;
   --transition: 150ms ease;
