@@ -8,6 +8,7 @@ export interface Message {
     role: "user" | "assistant";
     content: string;
     loading?: boolean;
+    suggestions?: string[];
 }
 
 interface ChatInterfaceProps {
@@ -60,6 +61,8 @@ const SOCIAL_LINKS: Record<string, string> = {
   github:    "https://github.com/mohibatif",
   email:     "mailto:mohibatif9@gmail.com",
   instagram: "https://www.instagram.com/mohibatif/",
+  behance:   "https://www.behance.net/IAMOHIB",
+  dribbble:  "https://dribbble.com/mohibatif",
 };
 
 // Platforms whose name should become a clickable link
@@ -153,13 +156,13 @@ export function ChatInterface({
               const errData = await res.json().catch(() => ({}));
               throw new Error(errData.details || errData.error || "API error");
           }
-          const data = await res.json() as { text: string };
+          const data = await res.json() as { text: string; suggestions?: string[] };
           const aiId = `a-${Date.now()}`;
 
           setTypingIds(prev => new Set(prev).add(aiId));
           setMessages((p) => [
               ...p.filter((m) => m.id !== "loading"),
-              { id: aiId, role: "assistant", content: data.text },
+              { id: aiId, role: "assistant", content: data.text, suggestions: data.suggestions },
           ]);
       } catch (err: any) {
           setMessages((p) => [
@@ -448,13 +451,15 @@ export function ChatInterface({
               </div>
             )}
             {/* Show suggestions only on the very last block, if AI is done typing */}
+            {/* Show suggestions only on the very last block, if AI is done typing */}
             {idx === pairs.length - 1 && pair.ai && !pair.ai.loading && (pair.ai.id && !typingIds.has(pair.ai.id)) && (
               <div className={styles.suggestionsRow}>
-                {SUGGESTED_QUESTIONS
-                  .filter(q => q.toLowerCase().trim() !== pair.user?.content.toLowerCase().trim())
-                  .map((q) => (
+                {Array.from(new Set((pair.ai.suggestions && pair.ai.suggestions.length > 0 
+                  ? pair.ai.suggestions 
+                  : SUGGESTED_QUESTIONS.filter(q => !messages.some(m => m.role === "user" && m.content.toLowerCase().trim() === q.toLowerCase().trim()))
+                ).map(s => s.trim()))).map((q) => (
                     <button 
-                      key={q} 
+                      key={`${q}-${idx}`} 
                       className={styles.suggestionBtn}
                       onClick={() => sendMessage(q)}
                     >
@@ -616,14 +621,15 @@ function TypewriterText({ text, onComplete }: { text: string; onComplete?: () =>
 // ── Formatted message renderer ─────────────────────────────
 function FormattedMessage({ text }: { text: string }) {
   const nodes: React.ReactNode[] = [];
+  const renderedHrefs = new Set<string>();
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  // Combined regex: markdown bold | social platform name + optional (url) | bare URL
-  const regex = /\*\*([^*]+)\*\*|\b(LinkedIn|GitHub|Github|Instagram|Twitter|Email)\b(?:\s*\([^)]*\))?|(https?:\/\/[^\s)]+)/gi;
+  // Combined regex: markdown links [text](url) | markdown bold **text** | bare URL
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|((?:https?:\/\/)?(?:www\.)?[\w\.-]+\.[a-z]{2,}(?:\/[\w\.\-\/?%&=]*)?)/gi;
 
   while ((match = regex.exec(text)) !== null) {
-    const [full, bold, platform, rawUrl] = match;
+    const [full, linkText, linkUrl, bold, rawUrl] = match;
     const offset = match.index;
 
     // Push preceding plain text
@@ -631,37 +637,51 @@ function FormattedMessage({ text }: { text: string }) {
       nodes.push(text.slice(lastIndex, offset));
     }
 
-    if (bold) {
+    if (linkText && linkUrl) {
+      // Markdown link [text](url)
+      const urlWithProtocol = linkUrl.startsWith("http") ? linkUrl : `https://${linkUrl}`;
+      nodes.push(
+        <a 
+          key={`m-${offset}`}
+          href={urlWithProtocol}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontWeight: "bold", color: "#fff", textDecoration: "underline" }}
+        >
+          {linkText}
+        </a>
+      );
+    } else if (bold) {
       // **bold text** → <strong>
       nodes.push(<strong key={offset}>{bold}</strong>);
-    } else if (platform) {
-      // Social platform name → bold clickable link, strip raw URL from parens
-      const key = platform.toLowerCase();
-      const href = SOCIAL_LINKS[key === "github" ? "github" : key];
-      nodes.push(
-        <a
-          key={offset}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontWeight: "bold", color: "#d0d0d0", textDecoration: "underline", cursor: "pointer" }}
-        >
-          {platform}
-        </a>
-      );
     } else if (rawUrl) {
       // Bare URL → clickable link
-      nodes.push(
-        <a
-          key={offset}
-          href={rawUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "#888", textDecoration: "underline", wordBreak: "break-all" }}
-        >
-          {rawUrl}
-        </a>
-      );
+        const urlWithProtocol = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+        
+        // If this URL points to a social link already highlighted by platform name, 
+        // or it's a duplicate of a previously rendered URL, render as plain text.
+        const isRedundant = Array.from(renderedHrefs).some(h => {
+          const cleanH = h.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "").toLowerCase();
+          const cleanUrl = rawUrl.replace(/^https?:\/\/(www\.)?/, "").replace(/[.,\/]$/, "").toLowerCase();
+          return cleanH.includes(cleanUrl) || cleanUrl.includes(cleanH);
+        });
+
+        if (isRedundant) {
+          nodes.push(rawUrl);
+        } else {
+          renderedHrefs.add(urlWithProtocol);
+          nodes.push(
+            <a
+              key={`u-${offset}`}
+              href={urlWithProtocol}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#8b8b8b", textDecoration: "underline", wordBreak: "break-all" }}
+            >
+              {rawUrl}
+            </a>
+          );
+        }
     }
 
     lastIndex = offset + full.length;

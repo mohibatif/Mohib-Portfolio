@@ -48,6 +48,9 @@ export function LoadingSplash() {
     <div 
       className={`${styles.overlay} ${fadeOut ? styles.fadeOut : ""} ${showTap ? styles.interactive : ""}`}
       onClick={handleEnter}
+      role={showTap ? "button" : undefined}
+      tabIndex={showTap ? 0 : -1}
+      onKeyDown={(e) => e.key === "Enter" && handleEnter()}
     >
       <div className={styles.content}>
         <div className={styles.codeLine}>

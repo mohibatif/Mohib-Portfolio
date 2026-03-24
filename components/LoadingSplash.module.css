@@ -12,7 +12,7 @@
 }
 
 .interactive {
-  cursor: pointer;
+  cursor: url('/cursors/select.svg'), pointer !important;
 }
 
 .fadeOut {

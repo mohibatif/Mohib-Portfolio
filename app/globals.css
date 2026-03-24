@@ -58,6 +58,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  cursor: url('/cursors/cursor.svg'), auto;
 }
 
 ::-webkit-scrollbar {
@@ -81,20 +82,23 @@ body {
   color: var(--accent);
 }
 
-a {
-  color: var(--text-dim);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-a:hover {
+a, a:hover {
   color: var(--accent);
+  cursor: url('/cursors/select.svg'), pointer !important;
 }
 
-button {
+button, 
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+label,
+select,
+summary,
+.cursor-pointer {
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: url('/cursors/select.svg'), pointer !important;
   font-family: var(--mono);
   font-size: 13px;
   color: inherit;
