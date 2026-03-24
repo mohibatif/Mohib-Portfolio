@@ -43,7 +43,7 @@ export function Currently() {
                     <li className={styles.item}>
                         <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
-                            Participant @ <HoverLink href="https://codeinplace.stanford.edu/" iconSrc="/logos/stanford.svg">Stanford - Code in Place 2025</HoverLink>
+                            Participant @ <HoverLink href="https://codeinplace.stanford.edu/" iconSrc="/logos/stanford.svg">Stanford - Code in Place</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>

@@ -625,11 +625,11 @@ function FormattedMessage({ text }: { text: string }) {
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  // Combined regex: markdown links [text](url) | markdown bold **text** | bare URL
-  const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|((?:https?:\/\/)?(?:www\.)?[\w\.-]+\.[a-z]{2,}(?:\/[\w\.\-\/?%&=]*)?)/gi;
+  // Combined regex: markdown links [text](url) | markdown bold **text** | email | bare URL
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|((?:https?:\/\/)?(?:www\.)?[\w\.-]+\.[a-z]{2,}(?:\/[\w\.\-\/?%&=]*)?)/gi;
 
   while ((match = regex.exec(text)) !== null) {
-    const [full, linkText, linkUrl, bold, rawUrl] = match;
+    const [full, linkText, linkUrl, bold, email, rawUrl] = match;
     const offset = match.index;
 
     // Push preceding plain text
@@ -654,6 +654,19 @@ function FormattedMessage({ text }: { text: string }) {
     } else if (bold) {
       // **bold text** → <strong>
       nodes.push(<strong key={offset}>{bold}</strong>);
+    } else if (email) {
+      // Email -> mailto link
+      nodes.push(
+        <a 
+          key={`e-${offset}`}
+          href={`mailto:${email}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontWeight: "bold", color: "#d0d0d0", textDecoration: "underline" }}
+        >
+          {email}
+        </a>
+      );
     } else if (rawUrl) {
       // Bare URL → clickable link
         const urlWithProtocol = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
