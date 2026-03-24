@@ -19,9 +19,9 @@ export function Currently() {
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                     />
                 </div>
-                
+
                 <div className={styles.statusContainer}>
-                    <motion.div 
+                    <motion.div
                         className={styles.statusPill}
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -38,6 +38,12 @@ export function Currently() {
                         <span className={styles.arrow}>&gt;</span>
                         <span className={styles.text}>
                             BS Artificial Intelligence @ <HoverLink href="https://www.umt.edu.pk/" iconSrc="/logos/umt.svg">UMT</HoverLink>
+                        </span>
+                    </li>
+                    <li className={styles.item}>
+                        <span className={styles.arrow}>&gt;</span>
+                        <span className={styles.text}>
+                            Participant @ <HoverLink href="https://codeinplace.stanford.edu/" iconSrc="/logos/stanford.svg">Stanford - Code in Place 2025</HoverLink>
                         </span>
                     </li>
                     <li className={styles.item}>
