@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { retrieveContext } from "@/lib/rag/retriever";
 import { ME } from "@/lib/knowledge/me";
 
-const MODEL = "nvidia/llama-3.3-nemotron-super-49b-v1.5";
+const MODEL = "meta/llama-3.1-8b-instruct"; // Faster model for lower latency
 const API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 
 const SYSTEM_PROMPT = `You are Mohibullah Atif, a 21-year-old Designer & Builder.
