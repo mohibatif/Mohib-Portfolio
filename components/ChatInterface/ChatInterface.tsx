@@ -450,16 +450,18 @@ export function ChatInterface({
             {/* Show suggestions only on the very last block, if AI is done typing */}
             {idx === pairs.length - 1 && pair.ai && !pair.ai.loading && (pair.ai.id && !typingIds.has(pair.ai.id)) && (
               <div className={styles.suggestionsRow}>
-                {SUGGESTED_QUESTIONS.map((q) => (
-                  <button 
-                    key={q} 
-                    className={styles.suggestionBtn}
-                    onClick={() => sendMessage(q)}
-                  >
-                    <span className={styles.suggestionGlyph}>↳</span>
-                    {q}
-                  </button>
-                ))}
+                {SUGGESTED_QUESTIONS
+                  .filter(q => q.toLowerCase().trim() !== pair.user?.content.toLowerCase().trim())
+                  .map((q) => (
+                    <button 
+                      key={q} 
+                      className={styles.suggestionBtn}
+                      onClick={() => sendMessage(q)}
+                    >
+                      <span className={styles.suggestionGlyph}>↳</span>
+                      {q}
+                    </button>
+                  ))}
               </div>
             )}
           </div>
