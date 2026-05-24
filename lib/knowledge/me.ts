@@ -49,7 +49,7 @@ Currently in my 6th semester of studying Artificial Intelligence at the Universi
             name: "Stanford Code in Place 2025",
             description: "Excited to share I’ve been officially accepted into Stanford University's Code in Place 2025 program.",
             url: "https://www.linkedin.com/feed/update/urn:li:activity:7318574161935630336/",
-            imageUrl: "https://media.licdn.com/dms/image/v2/D4D22AQH83k7000Bwww/feedshare-shrink_2048_1536/B4DZZDMafnHAAs-/0/1744884051667?e=2147483647&v=beta&t=Tr60laCnwDOM-XygsgqF28Lbdu6FHkiICrA90YEmK4E",
+            imageUrl: "/stanford.jpeg",
         },
         {
             name: "Lead | Google Developer Group UMT",
@@ -61,7 +61,7 @@ Currently in my 6th semester of studying Artificial Intelligence at the Universi
             name: "Devsinc Ambassador",
             description: "Journey from a volunteer to an ambassador. Representing University of Management and Technology - UMT as a Devsinc Ambassador.",
             url: "https://www.linkedin.com/feed/update/urn:li:activity:7308012683994259458/",
-            imageUrl: "https://media.licdn.com/dms/image/v2/D4D22AQEuzPaOMxVF6g/feedshare-shrink_2048_1536/B4DZWtGwODHAAs-/0/1742365998989?e=2147483647&v=beta&t=RC-HdgY3O72zTyh3haCAhIZS-K8vdphYisJ_EjJN3eo",
+            imageUrl: "/devsinc_ambassador.jpeg",
         },
         {
             name: "Softcom'26 X GIKI Hackathon Winners",
